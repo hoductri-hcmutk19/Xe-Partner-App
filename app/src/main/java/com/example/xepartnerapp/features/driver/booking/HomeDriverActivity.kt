@@ -164,10 +164,11 @@ class HomeDriverActivity : AppCompatActivity(), OnMapReadyCallback {
         mFusedLocationClient = this.let { LocationServices.getFusedLocationProviderClient(it) }
 
         val locationRequest = LocationRequest.create().apply {
-            interval = 20000
-            fastestInterval = 10000
+            // TODO change if need
+            interval = 200
+            fastestInterval = 100
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            smallestDisplacement = 100f
+            smallestDisplacement = 10f
         }
 
         locationCallback = object : LocationCallback() {
@@ -1073,7 +1074,7 @@ class HomeDriverActivity : AppCompatActivity(), OnMapReadyCallback {
                 val ref = driverID?.let { firestore.collection("Drivers").document(it) }
                 ref?.update(updates)
                 // TODO Change if need
-                skipTime = 2
+                skipTime = 1
             }
         }
     }
